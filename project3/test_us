@@ -1,0 +1,18 @@
+#!/bin/bash
+./bin/overlay_node 1 us_topo.conf LS
+./bin/overlay_node 2 us_topo.conf LS
+./bin/overlay_node 3 us_topo.conf LS
+./bin/overlay_node 4 us_topo.conf LS
+./bin/overlay_node 5 us_topo.conf LS
+./bin/overlay_node 6 us_topo.conf LS
+./bin/overlay_node 7 us_topo.conf LS
+./bin/overlay_node 8 us_topo.conf LS
+./bin/overlay_node 9 us_topo.conf LS
+./bin/overlay_node 10 us_topo.conf LS
+./bin/overlay_node 11 us_topo.conf LS
+./bin/overlay_node 12 us_topo.conf LS
+
+
+./bin/overlay_client 127.0.0.1 5120 6000 6 7000
+./bin/overlay_client 127.0.0.1 5060 7000 12 6000
+

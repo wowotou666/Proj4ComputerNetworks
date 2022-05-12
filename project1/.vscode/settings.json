@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "pet_hashtable.h": "c",
+        "pet_list.h": "c"
+    }
+}

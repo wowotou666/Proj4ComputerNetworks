@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+
+session="mysessionname"
+main ()
+{
+    createSession
+    separateScreens
+    updateScreens
+    connectSession
+}
+
+createSession ()
+{
+    tmux new -A -d -s $session
+}
+
+connectSession ()
+{
+    tmux ls
+    tmux a -t $session
+}
+
+separateScreens ()
+{
+    tmux split-window -h bash
+    tmux split-window -v bash
+    tmux split-window -v bash
+}
+
+sendCommandToScreen ()
+{
+    tmux send -t "$session:0.$1" "$2" C-m
+}
+
+updateScreens ()
+{
+    updateScreenA &
+    updateScreenB &
+    updateScreenC &
+    updateScreenD ;
+}
+
+screenA ()
+{
+    sendCommandToScreen 0 "$1"
+}
+
+screenB ()
+{
+    sendCommandToScreen 1 "$1"
+}
+
+screenC ()
+{
+    sendCommandToScreen 2 "$1"
+}
+
+screenD ()
+{
+    sendCommandToScreen 3 "$1"
+}
+
+updateScreenA ()
+{
+    screenA "./launchAScript.sh"
+    screenA "cd inADirectory"
+    screenA "reset"
+    screenA "sleep 1s"
+}
+
+updateScreenB ()
+{
+    screenB "./another.sh"
+    screenB "cd anotherDirectory"
+    screenB "reset"
+    screenB "sleep 2s"
+}
+
+updateScreenC ()
+{
+    screenC "echo do what you wnat in other screen"
+    screenC "cd yetAnother"
+    screenC "reset"
+    screenC "sleep 3s"
+}
+
+updateScreenD ()
+{
+    screenD "echo a 4th screen"
+}
+
+main
